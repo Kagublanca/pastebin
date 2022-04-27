@@ -2,6 +2,8 @@
   <a href="/" class="logo">PasteBin</a>
   <div class="buttons">
     <a class="btn" href="/new">New</a>
+    <% if(locals.canSave){%>
     <button class="btn" type="submit">Save</button>
+    <%} %>
   </div>
 </div>

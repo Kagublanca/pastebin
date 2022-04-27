@@ -1,24 +1,22 @@
 import express from "express";
+import "dotenv/config";
 
 const app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-
-import Document from "./models/Document.js";
 import mongoose from "mongoose";
-mongoose.connect("mongodb://localhost/pastebin", {
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-});
+import Document from "./models/Document.js";
+
+mongoose.connect(process.env.URI, {});
 
 app.get("/", (req, res) => {
   const code = `Welcome to the PasteBin clone!
 Use the commands in the top right corner
 to create a new file to share with others!`;
   //[\n] being a new-line character
-  res.render("code-display", { code });
+  res.render("code-display", { code, language: "plaintext" });
 });
 
 app.get("/new", (req, res) => {
@@ -28,14 +26,24 @@ app.get("/new", (req, res) => {
 app.post("/save", async (req, res) => {
   const value = req.body.value;
   try {
-    console.log("Got here" + { ...Document });
     const document = await Document.create({ value });
-    console.log("Hello this is the id " + document.id);
+    res.redirect(`/${document.id}`);
   } catch (e) {
     console.log("Save failed");
     res.render("new", { value });
   }
-  console.log(value);
+});
+
+app.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    const document = await Document.findById(id);
+
+    res.render("code-display", { code: document.value, id });
+  } catch (e) {
+    res.redirect("/");
+  }
 });
 
 app.listen(3000);
