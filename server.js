@@ -9,13 +9,15 @@ app.use(express.urlencoded({ extended: true }));
 import mongoose from "mongoose";
 import Document from "./models/Document.js";
 
-mongoose.connect(process.env.URI, {});
+mongoose.connect(process.env.URI);
 
 app.get("/", (req, res) => {
   const code = `Welcome to the PasteBin clone!
 Use the commands in the top right corner
 to create a new file to share with others!`;
   //[\n] being a new-line character
+
+  console.log(typeof process.env.URI);
   res.render("code-display", { code, language: "plaintext" });
 });
 
