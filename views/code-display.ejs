@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"
+      integrity="sha512-yUUc0qWm2rhM7X0EFe82LNnv2moqArj5nro/w1bi05A09hRVeIZbN6jlMoyu0+4I/Bu4Ck/85JQIU82T82M28w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/base16/summerfruit-dark.min.css"
+      integrity="sha512-z0l5A1Ja4rMDCWXnfHkU/DSEPXfYP9bhCN6Fs546RlQkb2mHrdCRtraIUaUG6AYBE4k4auZrm0q/WaoOinW7VA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script>
+      hljs.highlightAll();
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include("_buttons.ejs" ) %>
+    <div class="wrapper">
+      <div class="line-numbers">
+        <% for(let i = 1; i <= code.split("\n").length; i++) { %>
+        <div><%= i %></div>
+        <% } %>
+      </div>
+      <pre><code class="language-plaintext" id="code-display"><%= code %></code></pre>
+    </div>
+  </body>
+</html>
