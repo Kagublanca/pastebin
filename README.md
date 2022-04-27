@@ -6,7 +6,7 @@ This is just a little project I made to try out EJS, and complile a fullstack ap
 
 ### What is it?
 
-PasteBin is a way to share and post code with people through the internet in a clean way, with no hassle. It will automatically detect what code has been posted, thus highlighting it correctly.
+PasteBin is a way to share and post code with people through the internet in a clean way, with no hassle. It will automatically detect what language has been posted, thus highlighting it correctly.
 
 ------------
 
